@@ -12,7 +12,9 @@ of different algorithms and store them in the "result_time" directory.
 
 Fourth, run "plot_benchmark.py", generating plots of benchmark in the directory "result_image"
 
-binary_read.cpp 
+___________________________________________________________________________________________________________________________
+binary_read.cpp, measure_sort_time.cpp, write_csv.cpp are helper functions used in test_xxx.cpp or test_xxx.cu, latter ones are algorithms we'd like to
+test the benchmarks
 
 
 
