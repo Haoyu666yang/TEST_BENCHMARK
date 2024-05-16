@@ -8,7 +8,7 @@ def save_data_to_file(data, filename):
     print(f"Saved {filename}")
 
 def generate_uniform_data(size, data_type, seed=None):
-    filename = f'uniform_data_{np.dtype(data_type).name}_size_{size}.bin'
+    filename = os.path.join('origin_data', f'uniform_data_{np.dtype(data_type).name}_size_{size}.bin')
     if os.path.exists(filename):
         print(f"File {filename} already exists. Deleting and regenerating.")
         os.remove(filename)
@@ -20,7 +20,7 @@ def generate_uniform_data(size, data_type, seed=None):
     save_data_to_file(data, filename)
 
 def generate_normal_data(size, data_type, seed=None):
-    filename = f'normal_data_{np.dtype(data_type).name}_size_{size}.bin'
+    filename = os.path.join('origin_data', f'normal_data_{np.dtype(data_type).name}_size_{size}.bin')
     if os.path.exists(filename):
         print(f"File {filename} already exists. Deleting and regenerating.")
         os.remove(filename)
@@ -32,7 +32,7 @@ def generate_normal_data(size, data_type, seed=None):
     save_data_to_file(data, filename)
 
 def generate_zipf_data(size, data_type, seed=None):
-    filename = f'zipf_data_{np.dtype(data_type).name}_size_{size}.bin'
+    filename = os.path.join('origin_data', f'zipf_data_{np.dtype(data_type).name}_size_{size}.bin')
     if os.path.exists(filename):
         print(f"File {filename} already exists. Deleting and regenerating.")
         os.remove(filename)
@@ -41,6 +41,10 @@ def generate_zipf_data(size, data_type, seed=None):
     a = 2.0
     data = np.random.zipf(a, size).astype(data_type)
     save_data_to_file(data, filename)
+
+# Create the origin_data directory if it doesn't exist
+if not os.path.exists('origin_data'):
+    os.makedirs('origin_data')
 
 seed = 42
 sizes = [2**8, 2**11, 2**14, 2**17]

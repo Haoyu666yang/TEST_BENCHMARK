@@ -1,8 +1,8 @@
 # Compiler and flags
 CXX := g++
 NVCC := nvcc
-CXXFLAGS := -O3 -mavx2
-NVCCFLAGS := -O3
+CXXFLAGS := -O3 -mavx2 
+NVCCFLAGS := -O3 
 
 # Source files
 CPP_SOURCES := $(wildcard test_*.cpp)
@@ -28,7 +28,7 @@ all: $(CPP_TARGETS) $(CU_TARGETS)
 
 # Clean up build artifacts
 clean:
-	rm -f *_test
+	find . -type f \( -name '*.o' -o -name '*_test' -o -name '*.bin' -o -name '*.csv' -o -name '*.png' \) -delete
 
 # Phony targets
 .PHONY: all clean

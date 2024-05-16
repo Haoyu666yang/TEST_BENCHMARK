@@ -18,6 +18,11 @@ algorithms = ['avx2sort', 'thrust_sort']  # may need to change
 x_labels = [f'{int(np.log2(size))}' for size in sizes]
 x_ticks = [8, 11, 14, 17]
 
+# Create the result_image directory if it doesn't exist
+result_dir = 'result_image'
+if not os.path.exists(result_dir):
+    os.makedirs(result_dir)
+
 for distribution in distributions:
     for data_type in ['int32', 'int64']:
         throughput_data = {alg: [] for alg in algorithms}
@@ -25,7 +30,7 @@ for distribution in distributions:
         for size in sizes:
             size_str = str(size)
             for algorithm in algorithms:
-                filename = f'{data_type}_{algorithm}_times_size_{size_str}.csv'
+                filename = os.path.join('result_time', f'{data_type}_{algorithm}_times_size_{size_str}.csv')
                 print(f'Reading file: {filename}') 
 
                 if not os.path.exists(filename):
@@ -37,7 +42,7 @@ for distribution in distributions:
                 throughput = calculate_throughput(size, time, element_sizes[data_type])
                 throughput_data[algorithm].append(throughput)
 
-        output_filename = f'{distribution}_{data_type}_throughput.png'
+        output_filename = os.path.join(result_dir, f'{distribution}_{data_type}_throughput.png')
         if os.path.exists(output_filename):
             os.remove(output_filename)
 

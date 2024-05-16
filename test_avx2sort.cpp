@@ -133,7 +133,7 @@ bool is_sorted(const std::vector<int64_t>& arr) {
 
 int main() {
     int runs = 20;
-    std::vector<int> sizes = {8, 11, 14, 17};  
+    std::vector<int> sizes = {8, 11, 14, 17};
 
     for (int size : sizes) {
         std::vector<int32_t> uniform_data_int32;
@@ -144,25 +144,25 @@ int main() {
         std::vector<int64_t> normal_data_int64;
         std::vector<int64_t> zipf_data_int64;
 
-        std::string size_str = std::to_string(1 << size);  
+        std::string size_str = std::to_string(1 << size);
 
-        if (!binary_read_file("uniform_data_int32_size_" + size_str + ".bin", uniform_data_int32)) {
+        if (!binary_read_file("origin_data/uniform_data_int32_size_" + size_str + ".bin", uniform_data_int32)) {
             continue;
         }
-        if (!binary_read_file("normal_data_int32_size_" + size_str + ".bin", normal_data_int32)) {
+        if (!binary_read_file("origin_data/normal_data_int32_size_" + size_str + ".bin", normal_data_int32)) {
             continue;
         }
-        if (!binary_read_file("zipf_data_int32_size_" + size_str + ".bin", zipf_data_int32)) {
+        if (!binary_read_file("origin_data/zipf_data_int32_size_" + size_str + ".bin", zipf_data_int32)) {
             continue;
         }
 
-        if (!binary_read_file("uniform_data_int64_size_" + size_str + ".bin", uniform_data_int64)) {
+        if (!binary_read_file("origin_data/uniform_data_int64_size_" + size_str + ".bin", uniform_data_int64)) {
             continue;
         }
-        if (!binary_read_file("normal_data_int64_size_" + size_str + ".bin", normal_data_int64)) {
+        if (!binary_read_file("origin_data/normal_data_int64_size_" + size_str + ".bin", normal_data_int64)) {
             continue;
         }
-        if (!binary_read_file("zipf_data_int64_size_" + size_str + ".bin", zipf_data_int64)) {
+        if (!binary_read_file("origin_data/zipf_data_int64_size_" + size_str + ".bin", zipf_data_int64)) {
             continue;
         }
 
@@ -179,14 +179,14 @@ int main() {
             {"Normal", avg_time_normal_int32},
             {"Zipf", avg_time_zipf_int32}
         };
-        write_csv("int32_avx2sort_times_size_" + size_str + ".csv", int32_results);
+        write_csv("result_time/int32_avx2sort_times_size_" + size_str + ".csv", int32_results);
 
         std::vector<std::pair<std::string, double>> int64_results = {
             {"Uniform", avg_time_uniform_int64},
             {"Normal", avg_time_normal_int64},
             {"Zipf", avg_time_zipf_int64}
         };
-        write_csv("int64_avx2sort_times_size_" + size_str + ".csv", int64_results);
+        write_csv("result_time/int64_avx2sort_times_size_" + size_str + ".csv", int64_results);
     }
 
     return 0;
