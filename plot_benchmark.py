@@ -5,7 +5,7 @@ import numpy as np
 
 def calculate_throughput(size, time_seconds, element_size_bytes):
     data_size_bytes = size * element_size_bytes
-    data_size_gb = data_size_bytes / (1024 ** 3)  # GB
+    data_size_gb = data_size_bytes *8 / (10 ** 9)  # GB
     throughput_gbps = data_size_gb / time_seconds  # GB/s
     return throughput_gbps
 
@@ -13,7 +13,7 @@ sizes = [2**8, 2**11, 2**14, 2**17]
 element_sizes = {'int32': 4, 'int64': 8}
 distributions = ['Uniform', 'Normal', 'Zipf']
 
-algorithms = ['avx2sort', 'thrust_sort']  # may need to change
+algorithms = ['avx2sort', 'thrust_sort', 'cub_sort']  # may need to change
 
 x_labels = [f'{int(np.log2(size))}' for size in sizes]
 x_ticks = [8, 11, 14, 17]
