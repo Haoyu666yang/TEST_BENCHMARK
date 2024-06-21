@@ -28,7 +28,7 @@ void thrust_sort_int64(std::vector<int64_t>& data) {
 
 int main() {
     int runs = 20;
-    std::vector<int> sizes = {8, 11, 14, 17};  
+    std::vector<int> sizes = {8, 11, 14, 17, 20};  
 
     for (int size : sizes) {
         std::vector<int32_t> uniform_data_int32;

@@ -2,7 +2,7 @@
 CXX := g++
 NVCC := nvcc
 CXXFLAGS := -O3 -mavx2 
-NVCCFLAGS := -O3 
+NVCCFLAGS := -O3 -lcurand -std=c++11
 
 # Source files
 CPP_SOURCES := $(wildcard test_*.cpp)

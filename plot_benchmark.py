@@ -9,16 +9,16 @@ def calculate_throughput(size, time_seconds, element_size_bytes):
     throughput_gbps = data_size_gb / time_seconds  # GB/s
     return throughput_gbps
 
-sizes = [2**8, 2**11, 2**14, 2**17]
+sizes = [2**8, 2**11, 2**14, 2**17, 2**20]
 element_sizes = {'int32': 4, 'int64': 8}
 distributions = ['Uniform', 'Normal', 'Zipf']
 
 # algorithms = ['avx2sort', 'thrust_sort', 'cub_sort', 'merge_sort', 'bitonic_sort']  # may need to change
-algorithms = ['avx2sort', 'thrust_sort', 'merge_sort', 'bitonic_sort','quick_sort','cub_sort'] 
+algorithms = [ 'thrust_sort', 'merge_sort', 'bitonic_sort','cub_sort','mergepath_sort'] 
 
 
 x_labels = [f'{int(np.log2(size))}' for size in sizes]
-x_ticks = [8, 11, 14, 17]
+x_ticks = [8, 11, 14, 17,20]
 
 # Create the result_image directory if it doesn't exist
 result_dir = 'result_image'

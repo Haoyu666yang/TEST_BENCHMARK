@@ -47,7 +47,7 @@ if not os.path.exists('origin_data'):
     os.makedirs('origin_data')
 
 seed = 42
-sizes = [2**8, 2**11, 2**14, 2**17]
+sizes = [2**8, 2**11, 2**14, 2**17, 2**20]
 
 for size in sizes:
     generate_uniform_data(size, np.int32, seed=seed)
